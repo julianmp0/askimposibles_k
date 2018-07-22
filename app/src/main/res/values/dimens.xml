@@ -1,0 +1,18 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="app_bar_height">280dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="textSizeInsert">25sp</dimen>
+    <dimen name="textSizeJuego">35sp</dimen>
+    <dimen name="textSizeMain">30sp</dimen>
+    <dimen name="textSizeSplash">45sp</dimen>
+    <dimen name="textSizeJuegoMitad">15sp</dimen>
+    <dimen name="textSizePorcentaje">14sp</dimen>
+    <dimen name="textSizeVotos">12sp</dimen>
+    <dimen name="heightCenter">40dp</dimen>
+    <dimen name="textSizeMain1">20sp</dimen>
+    <dimen name="textSizeMainBtn">40sp</dimen>
+</resources>

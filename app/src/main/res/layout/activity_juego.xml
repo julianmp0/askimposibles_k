@@ -1,0 +1,204 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.androingenio.askimposibles.Juego"
+    android:background="@color/black">
+
+
+    <RelativeLayout
+        android:id="@+id/viewScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+
+
+        <LinearLayout
+            android:id="@+id/linearProgress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/heightCenter"
+            android:layout_centerInParent="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+
+            <!--
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_heart"
+                android:gravity="center"
+                />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_comentar"
+                android:gravity="center"/>
+
+                -->
+            <ImageView
+                android:id="@+id/btnShare"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:src="@drawable/ic_compartir" />
+
+
+        </LinearLayout>
+
+
+        <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+            android:id="@+id/progressPreguntaJuego"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/heightCenter"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:rcBackgroundColor="@color/secondaryLightColor"
+            app:rcProgressColor="@color/primaryLightColor"
+            app:rcRadius="0dp"
+            app:rcReverse="false" />
+
+
+        <LinearLayout
+            android:id="@+id/linearProgressVotos"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/heightCenter"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:visibility="gone"
+
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/heightCenter"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtPreguntaAPorcentaje"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSizePorcentaje" />
+
+                <TextView
+                    android:id="@+id/txtPreguntaAVotos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="234 votos"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSizeVotos" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/heightCenter"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+
+                android:gravity="right|center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtPreguntaBPorcentaje"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSizePorcentaje" />
+
+                <TextView
+                    android:id="@+id/txtPreguntaBVotos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="234 votos"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSizeVotos" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/linearProgress"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <ImageView
+                android:id="@+id/imgPreguntaAJuego"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/txtPreguntaAJuego"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/back_ask_one"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeJuego"
+                ads:font_="f3.ttf" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/linearProgress">
+
+            <ImageView
+                android:id="@+id/imgPreguntaBJuego"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/txtPreguntaBJuego"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/back_ask_two"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeJuego"
+                ads:font_="f3.ttf" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+    <!-- view for AdMob Banner Ad -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+
+</RelativeLayout>

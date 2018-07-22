@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Preguntas Imposibles</string>
+
+    <string name="title_activity_main">MainActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_juego">Juego</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_world">Hello world!</string>
+    <!-- -
+        This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-9635225275085288/7001067093</string>
+
+    <string name="facebook_app_id" translatable="false">1531470340251683</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb1531470340251683</string>
+    <string name="title_activity_mis_preguntas">Mis Preguntas Formuladas</string>
+
+    <string name="title_activity_insert_pregunta">Insertar nueva pregunta</string>
+    <string name="txtInsertPregunta">
+        "Todas las preguntas añadidas son revisadas antes de ser publicadas y deben cumplir los siguientes criterios:\n\n"
+
+        "1. No deben tener faltas de ortografía.\n\n"
+
+        "2. Deben ser preguntas con dificultad para elegir entre ambas.\n"
+
+    </string>
+
+
+    <string-array name="estados_preguntas">
+        <item>En revisión</item>
+        <item>Pregunta aceptada</item>
+        <item>Pregunta no aceptada</item>
+    </string-array>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
+    <string name="start_level">Level 1</string>
+    <string name="next_level">Next Level</string>
+    <!-- -
+        This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="interstitial_ad_unit_id">ca-app-pub-9635225275085288/3887117895</string>
+    <string name="txtMeGusta">Me Gusta</string>
+    <string name="txtCompartir">Compartir</string>
+    <string name="txtComentar">Comentar</string>
+    <string name="txtSplash">Tendras que decidir o explotarás con preguntas imposibles</string>
+    <string name="txtMain">preguntas imposibles</string>
+    <string name="JugarAhora">Jugar Ahora</string>
+    <string name="txtMisPreguntas">Formular Preguntas</string>
+    <string name="txtShare">"Tendras que decidir o explotarás con preguntas imposibles!!! #preguntasimposibles.\n\n"
+    "https://play.google.com/store/apps/details?id=com.androingenio.askimposibles"</string>
+
+
+</resources>

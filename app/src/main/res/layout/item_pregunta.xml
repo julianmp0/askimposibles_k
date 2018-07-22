@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical"
+    >
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:baselineAligned="false"
+                android:background="@color/white">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imgPreguntaA"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/txtPreguntaA"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/back_ask_one"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textSizeInsert"
+                        android:fontFamily="@font/f3" />
+                </RelativeLayout>
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imgPreguntaB"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/txtPreguntaB"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/back_ask_two"
+                        android:fontFamily="@font/f3"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textSizeInsert"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                android:id="@+id/rlProgressVotos"
+                android:visibility="gone">
+
+                <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/progressMisPregunta"
+                    app:rcRadius="0dp"
+                    app:rcReverse="false"
+                    app:rcProgressColor="@color/primaryLightColor"
+                    app:rcBackgroundColor="@color/secondaryLightColor"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/heightCenter"
+                    android:weightSum="2"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/heightCenter"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="50%"
+                            android:textSize="@dimen/textSizePorcentaje"
+                            android:id="@+id/txtPreguntaAPorcentajeItem"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="234 votos"
+                            android:textSize="@dimen/textSizeVotos"
+                            android:id="@+id/txtPreguntaAVotosItem"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/heightCenter"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+
+                        android:gravity="right|center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtPreguntaBPorcentajeItem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50%"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/textSizePorcentaje" />
+
+                        <TextView
+                            android:id="@+id/txtPreguntaBVotosItem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="234 votos"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/textSizeVotos" />
+                    </LinearLayout>
+
+
+
+
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+
+
+
+            <TextView
+                android:id="@+id/txtEstado"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/f3"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSizeInsert"/>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+</LinearLayout>
