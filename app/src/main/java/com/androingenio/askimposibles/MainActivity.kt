@@ -10,7 +10,6 @@ import android.view.WindowManager
 import com.androingenio.askimposibles.utils.Base
 import com.androingenio.askimposibles.utils.models.utils.getUid
 import com.androingenio.askimposibles.utils.util
-import com.bumptech.glide.Glide
 import com.facebook.share.model.ShareHashtag
 import com.facebook.share.model.ShareLinkContent
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.iid.FirebaseInstanceId
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity:AppCompatActivity() {
@@ -37,7 +37,7 @@ class MainActivity:AppCompatActivity() {
         var mDatabase = FirebaseDatabase.getInstance().reference
         util.uptadeToken(mDatabase, base.uniqueId, token)
         Log.d("foto",base.imgUser)
-        Glide.with(this).load(base.imgUser).into(imgUser)
+        Picasso.get().load(base.imgUser).into(imgUser)
         txtNombreUser.text = base.nombreUser
         App.getmFirebaseAnalytics().setCurrentScreen(this@MainActivity, "MainActivity", null)
 

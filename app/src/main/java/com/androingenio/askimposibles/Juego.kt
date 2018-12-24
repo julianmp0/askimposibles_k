@@ -18,12 +18,12 @@ import com.androingenio.askimposibles.utils.models.Pregunta
 import com.androingenio.askimposibles.utils.models.utils
 import com.androingenio.askimposibles.utils.permisos.RPResultListener
 import com.androingenio.askimposibles.utils.permisos.RuntimePermissionUtil
-import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import github.nisrulz.screenshott.ScreenShott
 import kotlinx.android.synthetic.main.activity_juego.*
 import java.io.File
@@ -53,8 +53,7 @@ class Juego:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_juego)
-        MobileAds.initialize(this)
-        adView.loadAd(AdRequest.Builder().build())
+        adView.loadAd(AdRequest.Builder().addTestDevice("9D1D40C827152710ADD5793F2B1EE321").build())
         database = FirebaseDatabase.getInstance()
         preguntasRef = database.reference
         hasWritePermission = RuntimePermissionUtil.checkPermissonGranted(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -154,7 +153,6 @@ class Juego:AppCompatActivity() {
         if (mInterstitialAd != null && mInterstitialAd!!.isLoaded()) {
             mInterstitialAd!!.show()
         } else {
-            Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show()
             goToNextLevel()
         }
     }
@@ -162,7 +160,7 @@ class Juego:AppCompatActivity() {
     private fun loadInterstitial() {
         // Disable the next level button and load the ad.
         Ad = false
-        val adRequest = AdRequest.Builder().build()
+        val adRequest = AdRequest.Builder().addTestDevice("9D1D40C827152710ADD5793F2B1EE321").build()
         mInterstitialAd!!.loadAd(adRequest)
     }
 
@@ -243,14 +241,6 @@ class Juego:AppCompatActivity() {
                 showInterstitial()
             }
         }
-        for (z in mComments) {
-            Log.d(TAG, "Pregunta--- " + z.toString())
-        }
-        for (z in mCommentIds) {
-            Log.d(TAG, "z--- $z")
-        }
-        Log.d(TAG, "preguntas size" + mComments.size)
-        Log.d(TAG, "preguntas size" + mCommentIds.size)
         if (mComments.size > 0) {
             if (mCommentIds.size == mComments.size) {
                 enableViews(true)
@@ -258,10 +248,12 @@ class Juego:AppCompatActivity() {
                 preguntaActual = mComments[x]
                 actualKey = mCommentIds[x]
                 Log.d(TAG, "pregunta actual" + preguntaActual.toString())
-                Glide.with(this).load(preguntaActual!!.imgA).into(imgPreguntaAJuego)
-                Glide.with(this).load(preguntaActual!!.imgB).into(imgPreguntaBJuego)
+                Picasso.get().load(preguntaActual!!.imgA).into(imgPreguntaAJuego)
+                Picasso.get().load(preguntaActual!!.imgB).into(imgPreguntaBJuego)
                 txtPreguntaAJuego.text = preguntaActual!!.preguntaA
                 txtPreguntaBJuego.text = preguntaActual!!.preguntaB
+                txtPreguntaBVotos.text = preguntaActual!!.votosB
+                txtPreguntaAVotos.text = preguntaActual!!.votosA
                 if (progressPreguntaJuego.visibility == View.VISIBLE) {
                     progressPreguntaJuego.visibility = View.GONE
                     linearProgressVotos.visibility = View.GONE

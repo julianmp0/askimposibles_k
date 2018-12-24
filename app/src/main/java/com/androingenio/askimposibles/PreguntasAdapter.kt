@@ -13,11 +13,11 @@ import android.widget.TextView
 import android.widget.Toast
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
 import com.androingenio.askimposibles.utils.models.Pregunta
-import com.bumptech.glide.Glide
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 import java.util.ArrayList
 
@@ -130,8 +130,8 @@ class PreguntasAdapter(var mContext: Context,var mDatabaseReference: DatabaseRef
         val comment = mComments[position]
         holder.pA.setText(comment.preguntaA)
         holder.pB.setText(comment.preguntaB)
-        Glide.with(mContext).load(comment.imgA).into(holder.imgA)
-        Glide.with(mContext).load(comment.imgB).into(holder.imgB)
+        Picasso.get().load(comment.imgA).into(holder.imgA)
+        Picasso.get().load(comment.imgB).into(holder.imgB)
         val estado = Integer.parseInt(comment.estado)
         holder.txtEstado.text = estados[estado]
         if (estado == 1) {

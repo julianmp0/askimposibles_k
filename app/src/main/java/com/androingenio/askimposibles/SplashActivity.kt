@@ -3,7 +3,6 @@ package com.androingenio.askimposibles
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.wifi.WifiManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,9 +16,7 @@ import com.facebook.*
 import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -27,7 +24,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.json.JSONException
-import org.json.JSONObject
 import java.util.*
 
 class SplashActivity : AppCompatActivity() {
@@ -47,6 +43,7 @@ class SplashActivity : AppCompatActivity() {
     val TAG = "FacebookLogin"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MobileAds.initialize(this, "ca-app-pub-9635225275085288~4949618829");
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_splash)
         FacebookSdk.sdkInitialize(applicationContext)
@@ -58,46 +55,29 @@ class SplashActivity : AppCompatActivity() {
         mCallbackManager = CallbackManager.Factory.create()
         login_button.setReadPermissions("email", "public_profile")
         login_button.registerCallback(mCallbackManager,object : FacebookCallback<LoginResult>{
-            /**
-             * Called when the dialog completes without error.
-             *
-             *
-             * Note: This will be called instead of [.onCancel] if any of the following conditions
-             * are true.
-             *
-             *  *
-             * [com.facebook.share.widget.MessageDialog] is used.
-             *
-             *  *
-             * The logged in Facebook user has not authorized the app that has initiated the dialog.
-             *
-             *
-             *
-             * @param result Result from the dialog
-             */
-            override fun onSuccess(result: LoginResult?) {
-                Log.d(TAG, "facebook:onSuccess:" + result!!.getAccessToken().getUserId())
-                if (Profile.getCurrentProfile() != null) {
-                    val profile = Profile.getCurrentProfile()
-                    foto = profile.getProfilePictureUri(500, 500).toString()
-                    link = profile.linkUri.toString()
-                    nombre = profile.name
-                    id = profile.id
-                } else {
+
+            override fun onSuccess(result: LoginResult) {
+
+                login_button.setVisibility(View.GONE)
+
                     val profileTracker = object : ProfileTracker() {
-                        override fun onCurrentProfileChanged(oldProfile: Profile, currentProfile: Profile) {
+                        override fun onCurrentProfileChanged(oldProfile: Profile?, currentProfile: Profile) {
                             stopTracking()
-                            Profile.setCurrentProfile(currentProfile)
-                            val profile = Profile.getCurrentProfile()
-                            foto = profile.getProfilePictureUri(500, 500).toString()
-                            link = profile.linkUri.toString()
-                            nombre = profile.name
-                            id = profile.id
+
+
+                            foto = currentProfile.getProfilePictureUri(500, 500).toString()
+                            link = currentProfile.linkUri.toString()
+                            nombre = currentProfile.name
+                            id = currentProfile.id
+
+                            startGraphRequest(result)
+
                         }
                     }
                     profileTracker.startTracking()
-                }
-                val request = GraphRequest.newMeRequest(result.getAccessToken()) { `object`, response ->
+
+                /*
+                val request = GraphRequest.newMeRequest(result!!.accessToken) { `object`, response ->
                     try {
                         Log.d("object FAcebook", `object`.toString())
                         if (`object`.has("email")) {
@@ -116,12 +96,6 @@ class SplashActivity : AppCompatActivity() {
                         if(`object`.has("age_range")){
                             age = `object`.getJSONObject("age_range").getString("min")
                         }
-
-
-
-
-
-
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
@@ -129,41 +103,22 @@ class SplashActivity : AppCompatActivity() {
 
 
 
-
                 val parameters = Bundle()
                 parameters.putString("fields", "email,gender,birthday,age_range")
                 request.parameters = parameters
                 request.executeAsync()
-
-                handleFacebookAccessToken(result.getAccessToken())
+*/
+                //handleFacebookAccessToken(result!!.getAccessToken())
 
             }
 
-            /**
-             * Called when the dialog is canceled.
-             *
-             *
-             * Note: [.onSuccess] will be called instead if any of the following conditions
-             * are true.
-             *
-             *  *
-             * [com.facebook.share.widget.MessageDialog] is used.
-             *
-             *  *
-             * The logged in Facebook user has not authorized the app that has initiated the dialog.
-             *
-             *
-             */
+
             override fun onCancel() {
                 Log.d(TAG, "facebook:onCancel")
                 updateUI(null)
             }
 
-            /**
-             * Called when the dialog finishes with an error.
-             *
-             * @param error The error that occurred
-             */
+
             override fun onError(error: FacebookException?) {
                 Log.e(TAG, "facebook:onError",error)
                 // [START_EXCLUDE]
@@ -171,6 +126,44 @@ class SplashActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun startGraphRequest(result: LoginResult) {
+        val request = GraphRequest.newMeRequest(result.accessToken) { `object`, response ->
+            try {
+                Log.d("object FAcebook", `object`.toString())
+                if (`object`.has("email")) {
+
+                    email = `object`.getString("email")
+                }
+
+                if (`object`.has("birthday")) {
+                    birthday = `object`.getString("birthday") // 01/31/1980 format
+                }
+
+                if(`object`.has("gender")){
+                    gender = `object`.getString("gender")
+                }
+
+                if(`object`.has("age_range")){
+                    age = `object`.getJSONObject("age_range").getString("min")
+                }
+
+                handleFacebookAccessToken(result!!.getAccessToken())
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+
+
+        val parameters = Bundle()
+        parameters.putString("fields", "email,gender,birthday,age_range")
+        request.parameters = parameters
+        request.executeAsync()
+
+
     }
 
     override fun onStart() {

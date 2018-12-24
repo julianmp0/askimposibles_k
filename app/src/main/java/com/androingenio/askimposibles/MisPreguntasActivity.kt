@@ -8,8 +8,8 @@ import android.util.Log
 import android.view.WindowManager
 import com.androingenio.askimposibles.utils.models.Pregunta
 import com.androingenio.askimposibles.utils.models.utils.getUid
-import com.bumptech.glide.Glide
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_mis_preguntas.*
 import kotlinx.android.synthetic.main.content_mis_preguntas.*
 import java.util.*
@@ -54,7 +54,7 @@ class MisPreguntasActivity:AppCompatActivity() {
                     val random = Random().nextInt(imgsurls.size)
                     Log.d(TAG, "imgsUrls: $random")
                     Log.d(TAG, "imgsUrls: " + imgsurls[random])
-                    Glide.with(this@MisPreguntasActivity).load(imgsurls[random]).into(imageRandom)
+                    Picasso.get().load(imgsurls[random]).into(imageRandom)
                 } else {
                     //no has agregado preguntas
                 }

@@ -39,6 +39,22 @@
           }
         },
         {
+          "client_id": "583179502403-4d1p6i63mdfelm969mnu5n7ijbeclfgt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.androingenio.askimposibles",
+            "certificate_hash": "969d940936d601b730a321c22643456141ecff95"
+          }
+        },
+        {
+          "client_id": "583179502403-neem21l475pv7r24oaf3ma9s9fqft9h1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.androingenio.askimposibles",
+            "certificate_hash": "a47a448c8169ab5f61c42b93b76de1ea94a9aab1"
+          }
+        },
+        {
           "client_id": "583179502403-lmo50v67fsd219gpf72cpe1e4n0qfpi1.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -50,10 +66,7 @@
       ],
       "services": {
         "analytics_service": {
-          "status": 2,
-          "analytics_property": {
-            "tracking_id": "UA-60670912-5"
-          }
+          "status": 1
         },
         "appinvite_service": {
           "status": 1,
@@ -62,7 +75,8 @@
         "ads_service": {
           "status": 2
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-9635225275085288~4949618829"
     }
   ],
   "configuration_version": "1"
