@@ -60,10 +60,23 @@ class SplashActivity : AppCompatActivity() {
 
                 login_button.setVisibility(View.GONE)
 
+
+
+                if(Profile.getCurrentProfile()!=null){
+                    val currentProfile = Profile.getCurrentProfile()
+
+                    foto = currentProfile.getProfilePictureUri(500, 500).toString()
+                    link = currentProfile.linkUri.toString()
+                    nombre = currentProfile.name
+                    id = currentProfile.id
+
+                    startGraphRequest(result)
+                }else{
+
+                    Log.d("object FAcebook", "por aca")
                     val profileTracker = object : ProfileTracker() {
                         override fun onCurrentProfileChanged(oldProfile: Profile?, currentProfile: Profile) {
                             stopTracking()
-
 
                             foto = currentProfile.getProfilePictureUri(500, 500).toString()
                             link = currentProfile.linkUri.toString()
@@ -75,6 +88,7 @@ class SplashActivity : AppCompatActivity() {
                         }
                     }
                     profileTracker.startTracking()
+                }
 
                 /*
                 val request = GraphRequest.newMeRequest(result!!.accessToken) { `object`, response ->
@@ -159,7 +173,7 @@ class SplashActivity : AppCompatActivity() {
 
 
         val parameters = Bundle()
-        parameters.putString("fields", "email,gender,birthday,age_range")
+        parameters.putString("fields", "email")
         request.parameters = parameters
         request.executeAsync()
 

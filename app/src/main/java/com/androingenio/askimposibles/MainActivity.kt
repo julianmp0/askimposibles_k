@@ -32,10 +32,11 @@ class MainActivity:AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_main)
-        val token = FirebaseInstanceId.getInstance().token
-        Log.d(TAG, "Refreshed token: $token")
-        var mDatabase = FirebaseDatabase.getInstance().reference
-        util.uptadeToken(mDatabase, base.uniqueId, token)
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(this@MainActivity) { instanceIdResult ->
+            val newToken = instanceIdResult.token
+            util.uptadeToken( base.uniqueId, newToken)
+        }
+
         Log.d("foto",base.imgUser)
         Picasso.get().load(base.imgUser).into(imgUser)
         txtNombreUser.text = base.nombreUser
@@ -49,7 +50,7 @@ class MainActivity:AppCompatActivity() {
                 .setQuote(getString(R.string.txtSplash))
                 .build()
         share_btn.shareContent = content
-        mDatabase = FirebaseDatabase.getInstance().reference.child("Usuarios").child(getUid())
+        val mDatabase = FirebaseDatabase.getInstance().reference.child("Usuarios").child(getUid())
         mDatabase.addListenerForSingleValueEvent(object  : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
             }

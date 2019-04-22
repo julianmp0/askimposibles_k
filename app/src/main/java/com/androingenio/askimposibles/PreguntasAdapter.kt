@@ -130,8 +130,11 @@ class PreguntasAdapter(var mContext: Context,var mDatabaseReference: DatabaseRef
         val comment = mComments[position]
         holder.pA.setText(comment.preguntaA)
         holder.pB.setText(comment.preguntaB)
-        Picasso.get().load(comment.imgA).into(holder.imgA)
-        Picasso.get().load(comment.imgB).into(holder.imgB)
+        if(!comment.imgA.isBlank())
+            Picasso.get().load(comment.imgA).into(holder.imgA)
+
+        if(!comment.imgB.isBlank())
+            Picasso.get().load(comment.imgB).into(holder.imgB)
         val estado = Integer.parseInt(comment.estado)
         holder.txtEstado.text = estados[estado]
         if (estado == 1) {

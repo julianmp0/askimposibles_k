@@ -25,8 +25,7 @@ public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
     public void onNewToken(String s) {
         super.onNewToken(s);
         Log.e("NEW_TOKEN",s);
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        util.uptadeToken(mDatabase, Base.getInstance(getApplicationContext()).getUniqueId(),s);
+
     }
 
     @Override
